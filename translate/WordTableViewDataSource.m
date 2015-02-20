@@ -24,7 +24,7 @@
 											  inManagedObjectContext:managedObjectContext];
 	[fetchRequest setEntity:entity];
 
-	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"languange = %@", languageDirection[0]];
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"language = %@", languageDirection[0]];
 	[fetchRequest setPredicate:predicate];
 
 	NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"string"

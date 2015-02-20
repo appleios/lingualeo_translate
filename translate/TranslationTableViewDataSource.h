@@ -8,6 +8,12 @@
 
 #import "ALTableViewDataSourceWithFetchedResultsController.h"
 
+@class Word;
+
 @interface TranslationTableViewDataSource : ALTableViewDataSourceWithFetchedResultsController
+
+- (instancetype)initWithWord:(Word*)word
+   andCellConfigurationBlock:(ALTableViewCellConfigurationBlock)cellConfigurationBlock
+	  andReuseIdentiferBlock:(ALTableViewCellReuseIdentiferBlock)reuseIdentifierBlock;
 
 @end

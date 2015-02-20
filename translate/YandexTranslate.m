@@ -7,10 +7,13 @@
 //
 
 #import "YandexTranslate.h"
+#import "Language.h"
 
 #import <AFNetworking/AFHTTPSessionManager.h>
+#import <AFNetworking/AFNetworkReachabilityManager.h>
 
-static NSString *const BaseURL = @"http://www.panoramio.com/map/";
+static NSString *const BaseURL = @"https://translate.yandex.net/api/v1.5/tr.json";
+static NSString *const YandexAPIKey = @"trnsl.1.1.20150220T191132Z.8f29db8585175711.f327abba9e940da20baeb736297f8e374cb724d5";
 
 @interface YandexTranslate ()
 
@@ -20,11 +23,14 @@ static NSString *const BaseURL = @"http://www.panoramio.com/map/";
 
 @property (nonatomic, strong) AFHTTPSessionManager *networkManager;
 
+@property (nonatomic) BOOL internetAccessble;
+
 @end
 
 @implementation YandexTranslate
 
-+ (YandexTranslate*)sharedInstance {
++ (YandexTranslate*)sharedInstance
+{
 	static YandexTranslate *_sharedInstance = nil;
 	static dispatch_once_t onceToken;
 	dispatch_once(&onceToken, ^{
@@ -44,30 +50,42 @@ static NSString *const BaseURL = @"http://www.panoramio.com/map/";
 
 - (void)configureYandexTranslate
 {
+	[[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status)
+	{
+		self.internetAccessble =
+		(status == AFNetworkReachabilityStatusReachableViaWiFi) ||
+		(status == AFNetworkReachabilityStatusReachableViaWWAN);
+	}];
+	[[AFNetworkReachabilityManager sharedManager] startMonitoring];
+}
+
+- (NSString*)directionToString:(NSArray*)languageDirection
+{
+	return [NSString stringWithFormat:@"%@-%@",
+			[languageDirection[0] shortName],
+			[languageDirection[1] shortName]];
 }
 
 - (void)translationsForWord:(NSString*)word
+					   lang:(NSArray*)languageDirection
 				withSuccess:(SuccessBlock)successBlock
 				 andFailure:(FailureBlock)failureBlock
 {
 	self.successBlock = successBlock;
 	self.failureBlock = failureBlock;
 	NSDictionary *params = @{
-							 @"order" : @"upload_date",
-							 @"set" : @"public",
-							 @"from" : @(0),
-							 @"to" : @(count),
-							 @"minx" : @(self.currentLocation.longitude - SPAN),
-							 @"miny" : @(self.currentLocation.latitude  - SPAN),
-							 @"maxx" : @(self.currentLocation.longitude + SPAN),
-							 @"maxy" : @(self.currentLocation.latitude  + SPAN)
+							 @"key" : YandexAPIKey,
+							 @"text" : word,
+							 @"lang" : [self directionToString:languageDirection],
+							 @"format" : @"plain"
 							 };
 	
-	[self.networkManager GET:@"get_panoramas.php"
+	[self.networkManager GET:@"translate"
 				  parameters:params
 					 success:^(NSURLSessionDataTask *task, id responseObject)
 	 {
-		 self.successBlock([responseObject valueForKey:@"photos"]);
+		 NSArray *translations = [responseObject valueForKey:@"text"];
+	 self.successBlock(translations);
 	 } failure:^(NSURLSessionDataTask *task, NSError *error) {
 		 self.failureBlock(error);
 	 }];

@@ -7,11 +7,11 @@
     <entity name="Word" representedClassName="Word" syncable="YES">
         <attribute name="string" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="language" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Language" inverseName="words" inverseEntity="Language" syncable="YES"/>
-        <relationship name="sourceWord" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Word" inverseName="translations" inverseEntity="Word" syncable="YES"/>
-        <relationship name="translations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Word" inverseName="sourceWord" inverseEntity="Word" syncable="YES"/>
+        <relationship name="sourceWord" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Word" inverseName="translations" inverseEntity="Word" syncable="YES"/>
+        <relationship name="translations" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Word" inverseName="sourceWord" inverseEntity="Word" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Word" positionX="162" positionY="36" width="128" height="103"/>
         <element name="Language" positionX="124" positionY="251" width="128" height="73"/>
+        <element name="Word" positionX="162" positionY="36" width="128" height="103"/>
     </elements>
 </model>

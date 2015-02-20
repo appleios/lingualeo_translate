@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 #import <ALCoreDataManager/ALCoreDataManager+Singleton.h>
 
+#import "YandexTranslate.h"
+
 @interface AppDelegate ()
 
 @end
@@ -18,7 +20,12 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 	// Override point for customization after application launch.
+	[UIApplication sharedApplication].statusBarHidden = YES;
+	
 	[ALCoreDataManager setDefaultCoreDataModelName:@"Model"];
+	
+	[YandexTranslate sharedInstance];
+	
 	return YES;
 }
 
@@ -42,6 +49,7 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
 	// Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+	[[ALCoreDataManager defaultManager] saveContext];
 }
 
 @end

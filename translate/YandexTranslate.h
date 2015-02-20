@@ -8,9 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
-typedef void(^SuccessBlock)(NSArray *images);
+typedef void(^SuccessBlock)(NSArray *translations);
 typedef void(^FailureBlock)(NSError *error);
 
 @interface YandexTranslate : NSObject
+
++ (YandexTranslate*)sharedInstance;
+
+- (void)translationsForWord:(NSString*)word
+					   lang:(NSArray*)languageDirection
+				withSuccess:(SuccessBlock)successBlock
+				 andFailure:(FailureBlock)failureBlock;
+
+@property (nonatomic, readonly) BOOL internetAccessble;
 
 @end

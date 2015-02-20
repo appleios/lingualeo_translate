@@ -13,13 +13,16 @@
 #import "Word.h"
 
 #import "WordTableViewDataSource.h"
+#import "TranslationTableViewController.h"
+#import "WordTableViewCell.h"
 
 static NSString *const ToAddTranslationSegueIdentifier = @"ToAddNew";
-static NSString *const ToTranslationSegueIdentifier = @"ToTranslation";
+static NSString *const ToTranslationSegueIdentifier = @"ToTranslations";
 
-@interface WordTableViewController ()
+@interface WordTableViewController () <UISearchBarDelegate>
 
 @property (nonatomic, strong) NSArray *languageDirection;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *langBarItem;
 
 @property (nonatomic, strong) WordTableViewDataSource *dataSource;
 
@@ -34,15 +37,28 @@ static NSString *const ToTranslationSegueIdentifier = @"ToTranslation";
 	self.tableView.dataSource = self.dataSource;
 }
 
+#pragma mark - Search -
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(language = %@) && (string CONTAINS %@)",
+							  self.languageDirection[0],
+							  searchText];
+	[self.dataSource setPredicate:predicate];
+}
+
+#pragma mark - Delegate -
+
+#pragma mark - DataSource -
+
 - (WordTableViewDataSource *)dataSource
 {
 	if (!_dataSource) {
 		_dataSource = [[WordTableViewDataSource alloc] initWithLanguageDirection:self.languageDirection andCellConfigurationBlock:^(UITableViewCell *cell, NSIndexPath *indexPath)
 		{
 			Word *word = [self.dataSource itemAtIndexPath:indexPath];
-			cell.textLabel.text = word.string;
-			
-			cell.detailTextLabel.text = @"...";
+			[(WordTableViewCell*)cell setLanguageDirection:self.languageDirection];
+			[(WordTableViewCell*)cell setWord:word];
 		} andReuseIdentiferBlock:^NSString *(NSIndexPath *indexPath) {
 			return @"Cell";
 		}];
@@ -51,6 +67,8 @@ static NSString *const ToTranslationSegueIdentifier = @"ToTranslation";
 	}
 	return _dataSource;
 }
+
+#pragma mark - Util -
 
 - (NSArray*)languageDirection
 {
@@ -62,16 +80,27 @@ static NSString *const ToTranslationSegueIdentifier = @"ToTranslation";
 	return _languageDirection;
 }
 
-- (NSString*)directionToString:(NSArray*)languageDirection
-{
-	return [NSString stringWithFormat:@"%@-%@",languageDirection[0],languageDirection[1]];
-}
+#pragma mark - Actions -
 
 - (IBAction)actionChangeLanguageDirectino:(id)sender
 {
 	NSArray *newDirection = @[self.languageDirection[1], self.languageDirection[0]];
 	self.languageDirection = newDirection;
+	
+	self.langBarItem.title =
+	[NSString stringWithFormat:@"%@-%@",
+	 [[self.languageDirection[0] shortName] capitalizedString],
+	 [[self.languageDirection[1] shortName] capitalizedString]];
+	
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"language = %@", self.languageDirection[0]];
+	[self.dataSource setPredicate:predicate];
 }
+
+- (IBAction)action:(id)sender
+{
+}
+
+#pragma mark - Segue -
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -82,7 +111,12 @@ static NSString *const ToTranslationSegueIdentifier = @"ToTranslation";
 			vc.dstLang = self.languageDirection[1];
 		}
 	}else if([segue.identifier isEqualToString:ToTranslationSegueIdentifier]){
-		
+		TranslationTableViewController *vc = (TranslationTableViewController*)[segue destinationViewController];
+		if ([vc isKindOfClass:TranslationTableViewController.class]) {
+			if ([sender isKindOfClass:WordTableViewCell.class]) {
+				vc.word = [(WordTableViewCell*)sender word];    
+			}
+		}
 	}
 }
 
