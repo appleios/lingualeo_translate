@@ -20,7 +20,7 @@ PODS:
   - AFNetworking/UIKit (2.5.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - ALCoreDataManager (0.1.2)
+  - ALCoreDataManager (0.1.3)
   - ALDataSource (0.2.6):
     - ALManagedObjectFactory (~> 0.2)
   - ALManagedObjectFactory (0.2.1):
@@ -29,14 +29,14 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking
-  - ALCoreDataManager
+  - ALCoreDataManager (= 0.1.3)
   - ALDataSource
   - ALManagedObjectFactory
   - MBProgressHUD
 
 SPEC CHECKSUMS:
   AFNetworking: 8bee59492a6ff15d69130efa4d0dc67e0094a52a
-  ALCoreDataManager: c6320214f9968213924ad13cded7c753a819c68e
+  ALCoreDataManager: 45375105c96a15dea9ae6622b687c0985f556a8f
   ALDataSource: f06b4ea3bda87c62162b095867ebbff01b1af03c
   ALManagedObjectFactory: 3e787251ed3074c470f917471b7c0b61341f1fe5
   MBProgressHUD: 2038dbcf3dce73215abed6001657043d53aa79a8

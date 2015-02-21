@@ -41,9 +41,15 @@ static NSString *const ToTranslationSegueIdentifier = @"ToTranslations";
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
-	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(language = %@) && (string CONTAINS %@)",
-							  self.languageDirection[0],
-							  searchText];
+	NSPredicate *predicate = nil;
+	if ([searchText length]) {
+		predicate = [NSPredicate predicateWithFormat:@"(language = %@) && (string CONTAINS[c] %@)",
+								  self.languageDirection[0],
+								  searchText];
+	}else{
+		predicate = [NSPredicate predicateWithFormat:@"language = %@",
+					 self.languageDirection[0]];
+	}
 	[self.dataSource setPredicate:predicate];
 }
 

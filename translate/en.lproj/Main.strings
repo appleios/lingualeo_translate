@@ -1,0 +1,30 @@
+
+/* Class = "IBUILabel"; text = "Title"; ObjectID = "00Q-J4-8LQ"; */
+"00Q-J4-8LQ.text" = "Title";
+
+/* Class = "IBUINavigationItem"; title = "Words"; ObjectID = "Gac-Ef-5fn"; */
+"Gac-Ef-5fn.title" = "Words";
+
+/* Class = "IBUIButton"; normalTitle = "Load Translations"; ObjectID = "MnC-f3-Twz"; */
+"MnC-f3-Twz.normalTitle" = "Load Translations";
+
+/* Class = "IBUISearchBar"; placeholder = "Word or Translation"; ObjectID = "Nh4-tP-CGx"; */
+"Nh4-tP-CGx.placeholder" = "Word or Translation";
+
+/* Class = "IBUILabel"; text = "Title"; ObjectID = "a72-Wy-skb"; */
+"a72-Wy-skb.text" = "Title";
+
+/* Class = "IBUIBarButtonItem"; title = "Ru-En"; ObjectID = "h8F-6n-lIa"; */
+"h8F-6n-lIa.title" = "Ru-En";
+
+/* Class = "IBUILabel"; text = "Detail"; ObjectID = "n0S-Yz-eE5"; */
+"n0S-Yz-eE5.text" = "Detail";
+
+/* Class = "IBUILabel"; text = "Title"; ObjectID = "rBM-De-UKJ"; */
+"rBM-De-UKJ.text" = "Title";
+
+/* Class = "IBUILabel"; text = "Word"; ObjectID = "vaJ-8b-xlJ"; */
+"vaJ-8b-xlJ.text" = "Word";
+
+/* Class = "IBUINavigationItem"; title = "Add Word"; ObjectID = "wNS-TF-fhI"; */
+"wNS-TF-fhI.title" = "Add Word";

@@ -84,7 +84,7 @@
 		8F2800F41A97EC1A00E7DD1C /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8F2800F51A97EC4000E7DD1C /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
 		8F2800F61A97EC4000E7DD1C /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		8F2800F71A97EC4000E7DD1C /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		8F2800F81A97FFA600E7DD1C /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A43DFEBFFCD23066A5A74F7D /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB67C444F284683A8BD53AB7 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -529,7 +529,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				8F2800F41A97EC1A00E7DD1C /* Base */,
-				8F2800F71A97EC4000E7DD1C /* ru */,
+				8F2800F81A97FFA600E7DD1C /* ru */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
