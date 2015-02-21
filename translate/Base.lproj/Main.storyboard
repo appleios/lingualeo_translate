@@ -85,13 +85,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QGX-zw-LKS" customClass="StyledTextField">
-                                <rect key="frame" x="64" y="75" width="140" height="40"/>
+                                <rect key="frame" x="64" y="75" width="371" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="140" id="2SI-4f-bw8"/>
                                     <constraint firstAttribute="height" constant="40" id="Sg1-8E-DF0"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="2SI-4f-bw8"/>
+                                    </mask>
+                                </variation>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Word" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vaJ-8b-xlJ">
                                 <rect key="frame" x="16" y="84" width="40" height="21"/>
@@ -99,7 +104,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MnC-f3-Twz">
+                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MnC-f3-Twz">
                                 <rect key="frame" x="443" y="80" width="121" height="30"/>
                                 <state key="normal" title="Load Translations">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -162,6 +167,7 @@
                         <constraints>
                             <constraint firstItem="SmS-rK-mx7" firstAttribute="leading" secondItem="TEu-CW-sog" secondAttribute="leading" constant="16" id="2sP-Ov-OJm"/>
                             <constraint firstItem="npf-vQ-9Pa" firstAttribute="leading" secondItem="TEu-CW-sog" secondAttribute="leading" id="5TC-DC-YGw"/>
+                            <constraint firstItem="MnC-f3-Twz" firstAttribute="leading" secondItem="QGX-zw-LKS" secondAttribute="trailing" constant="8" id="6v2-RY-1zB"/>
                             <constraint firstAttribute="trailing" secondItem="SmS-rK-mx7" secondAttribute="trailing" constant="16" id="BNI-8w-O8n"/>
                             <constraint firstItem="QGX-zw-LKS" firstAttribute="centerY" secondItem="vaJ-8b-xlJ" secondAttribute="centerY" id="CKa-wR-IFl"/>
                             <constraint firstItem="6nj-rH-iQ0" firstAttribute="leading" secondItem="TEu-CW-sog" secondAttribute="leading" constant="16" id="IM3-WQ-jPY"/>
